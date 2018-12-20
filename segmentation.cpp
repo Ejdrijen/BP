@@ -1,7 +1,7 @@
 #include "segmentation.h"
 using namespace af;
 
-Segmentation::Segmentation(int blockSize=10,int Threshold=130):bolckSize(blockSize), Threshold(Threshold)
+Segmentation::Segmentation(int blockSize=10,int Threshold=130):blockSize(blockSize), Threshold(Threshold)
 {}
 
 
@@ -31,13 +31,17 @@ array Segmentation::picMask(array picture){
 }
 
 array Segmentation::start(array pictures){
-    array mask;
+
     if(pictures.isempty()|| this->Threshold==0 || this->blockSize==0) return NULL;
     gfor(seq i,pictures.dims(2)-1){
         try{
-            mask =join(2,mask,this->Mask(pictures(span,span,k)));
+            this->mask =join(2,this->mask,this->picMask(pictures(span,span,i)));
+        }
+        catch(af::exception e){
+            e.what();
+            return NULL;
         }
     }
 
-
+    return this->mask;
 }

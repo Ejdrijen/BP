@@ -13,8 +13,6 @@ private:
     af::array Images;
     af::array Mask;
 
-
-
     Segmentation segmentation;
 
 public:

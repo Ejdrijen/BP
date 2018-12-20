@@ -1,12 +1,10 @@
 #include "preprocessing.h"
 
 
-Preprocessing::Preprocessing()
-{
-}
 
 
-void Preprocessing::loadImages(QStringList fileNames){
+
+int Preprocessing::loadImages(QStringList fileNames){
     try{
         for(int i=0;i<fileNames.length();i++){
             this->Images=af::join(2,this->Images,af::loadImage(fileNames[i].toStdString().c_str(),false));
