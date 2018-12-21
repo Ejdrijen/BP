@@ -13,6 +13,7 @@ class Segmentation
     af::array mask;
     af::array picMask(af::array picture);//called from start for each picture
 public:
+    Segmentation();
     Segmentation(int blockSize, int Threshold);
     void SetBlockParams(int blockSize);
     void setThreshold(int Threshold);

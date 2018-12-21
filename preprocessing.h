@@ -12,12 +12,13 @@ private:
 
     af::array Images;
     af::array Mask;
-
     Segmentation segmentation;
 
 public:
     Preprocessing();
+    void setSegmentParams(int threshold,int windowSize); //set parameters of segmentation proccess
     int loadImages(QStringList fileNames);// return 0 on success, -1 on failure
+    void start(); // starts the proccess
 };
 
 #endif // PREPROCESSING_H

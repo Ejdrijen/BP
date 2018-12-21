@@ -1,7 +1,6 @@
 #include "preprocessing.h"
 
-
-
+Preprocessing::Preprocessing(){};
 
 
 int Preprocessing::loadImages(QStringList fileNames){
@@ -16,4 +15,13 @@ int Preprocessing::loadImages(QStringList fileNames){
         this->Images=NULL;
         return -1;
     }
+}
+
+void Preprocessing::setSegmentParams(int threshold, int windowSize){
+    this->segmentation.SetBlockParams(windowSize);
+    this->segmentation.setThreshold(threshold);
+}
+
+void Preprocessing::start(){
+    this->Mask=this->segmentation.start(this->Images);
 }

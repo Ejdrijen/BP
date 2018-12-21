@@ -1,6 +1,10 @@
 #include "segmentation.h"
 using namespace af;
 
+Segmentation::Segmentation(){
+
+}
+
 Segmentation::Segmentation(int blockSize=10,int Threshold=130):blockSize(blockSize), Threshold(Threshold)
 {}
 
