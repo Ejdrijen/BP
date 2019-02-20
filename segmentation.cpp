@@ -1,9 +1,7 @@
 #include "segmentation.h"
 using namespace af;
 
-Segmentation::Segmentation(){
-
-}
+Segmentation::Segmentation(){}
 
 Segmentation::Segmentation(int blockSize=10,int Threshold=130):blockSize(blockSize), Threshold(Threshold)
 {}
@@ -17,7 +15,7 @@ void Segmentation::SetBlockParams(int blockSize)
 void Segmentation::setThreshold(int Threshold){
     this->Threshold=Threshold;
 }
-array Segmentation::picMask(array picture){
+array Segmentation::picToMask(array picture){
     array variance;
     array unwrapped=unwrap(picture,this->blockSize,this->blockSize,this->blockSize,this->blockSize,0,0); // unwraps picture
     variance=var(unwrapped,false,0); // variances for each slice
@@ -39,13 +37,14 @@ array Segmentation::start(array pictures){
     if(pictures.isempty()|| this->Threshold==0 || this->blockSize==0) return NULL;
     gfor(seq i,pictures.dims(2)-1){
         try{
-            this->mask =join(2,this->mask,this->picMask(pictures(span,span,i)));
+//            this->mask =join(2,this->mask,this->picMask(pictures(span,span,i)));
+              pictures(span,span,i)=picToMask(pictures(span,span,i));
         }
         catch(af::exception e){
             e.what();
             return NULL;
         }
     }
+    return pictures;
 
-    return this->mask;
 }

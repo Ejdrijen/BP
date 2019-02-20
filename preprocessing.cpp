@@ -1,6 +1,6 @@
 #include "preprocessing.h"
 
-Preprocessing::Preprocessing(){};
+Preprocessing::Preprocessing(){}
 
 
 int Preprocessing::loadImages(QStringList fileNames){
@@ -24,4 +24,9 @@ void Preprocessing::setSegmentParams(int threshold, int windowSize){
 
 void Preprocessing::start(){
     this->Mask=this->segmentation.start(this->Images);
+}
+
+QPixmap Preprocessing::getPicture(af::array picture){
+    QPixmap image;
+    return image;
 }
